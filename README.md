@@ -1,6 +1,6 @@
-#Group Name
+#CG-F15-13-Rutgers
 ######Unity Projects - CG Fall 2015 @ Rutgers
-######By: *[Leader], [Member1], [Member2], [Member3]*
+######By: Nisha Ratanpara, Thalia Brito, Erin ‬Wojciechowski‬
 Check out our website: [Group Name Website](https://www.google.com "Google's Homepage!")
 
 ![alt text](teamLogo.png)
