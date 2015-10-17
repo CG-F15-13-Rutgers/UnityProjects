@@ -3,10 +3,11 @@ using UnityEngine;
 //using System.Collections;
 
 public class MoveToClickPoint : MonoBehaviour {
-	NavMeshAgent agent;
+	NavMeshAgent nav;
+	private Transform colliderObj;
 	// Use this for initialization
 	void Start () {
-		agent = GetComponent<NavMeshAgent> ();
+		nav = GetComponent<NavMeshAgent> ();
 	}
 	
 	// Update is called once per frame
@@ -16,7 +17,10 @@ public class MoveToClickPoint : MonoBehaviour {
 
 			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
 			{
-				agent.destination = hit.point;
+				colliderObj = hit.transform;
+				if(colliderObj.tag != "Agent")
+				nav.destination = hit.point;
+
 			}
 		}
 	}
