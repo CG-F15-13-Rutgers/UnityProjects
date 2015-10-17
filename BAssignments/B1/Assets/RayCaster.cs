@@ -8,6 +8,7 @@ public class RayCaster : MonoBehaviour {
 
 	void Start(){
 		Snake.GetComponent<MoveTo>().enabled = false;
+		print ("********************************");
 		Snake.GetComponent<MoveToClickPoint>().enabled = false;
 	}
 	// Update is called once per frame
