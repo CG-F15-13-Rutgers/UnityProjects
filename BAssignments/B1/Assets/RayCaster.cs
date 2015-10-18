@@ -3,38 +3,26 @@ using System.Collections;
 
 public class RayCaster : MonoBehaviour {
 	public Transform colliderObj;
-	public GameObject Snake;
-	bool move = false;
+	public GameObject obstacle1;
+	public GameObject obstacle2;
 
 	void Start(){
-		Snake.GetComponent<MoveTo>().enabled = false;
-		print ("********************************");
-		Snake.GetComponent<MoveToClickPoint>().enabled = false;
+		obstacle1.GetComponent<ObstacleController>().enabled = false;
+		obstacle2.GetComponent<ObstacleController>().enabled = false;
 	}
 	// Update is called once per frame
 	void Update () {
-		bool foundHit = false;
 
 		RaycastHit hit = new RaycastHit ();
 
 		Ray ray = GetComponent<Camera>().ScreenPointToRay (Input.mousePosition);
 		if (Physics.Raycast (ray, out hit)) {
 			colliderObj = hit.transform;
-			if(colliderObj.tag == "Agent"){
-				print("found AGENT");
+			if(colliderObj.tag == "Obstacle"){
+				print("found Obstacle");
 				if(Input.GetMouseButtonDown(0)){
-					if(move == false){
-						move = true;
-						Snake.GetComponent<MoveTo>().enabled = true;
-						Snake.GetComponent<MoveToClickPoint>().enabled = true;
-						print("script is ACTIVE");
-					}
-					else if(move == true){
-						move = false;
-						Snake.GetComponent<MoveTo>().enabled = false;
-						Snake.GetComponent<MoveToClickPoint>().enabled = false;
-						print("script is inactive");
-					}
+					obstacle1.GetComponent<ObstacleController>().enabled = false;
+					obstacle2.GetComponent<ObstacleController>().enabled = false;
 					print("clicked mouse");
 				}
 
