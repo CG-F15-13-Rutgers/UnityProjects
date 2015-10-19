@@ -56,7 +56,7 @@ public class MoveToClickPoint : MonoBehaviour {
 
 				}
 			} 
-
+			lastClickTime = Time.time;
 		}
 	}
 }
