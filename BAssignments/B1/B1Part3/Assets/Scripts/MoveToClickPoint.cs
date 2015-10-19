@@ -21,7 +21,6 @@ public class MoveToClickPoint : MonoBehaviour {
 		int run = Animator.StringToHash("startRun");
 		int walk = Animator.StringToHash ("startWalk");
 		if (Input.GetMouseButton (0)) {
-
 			if(Time.time - lastClickTime < delay)
 			{
 				RaycastHit hit;
@@ -34,7 +33,10 @@ public class MoveToClickPoint : MonoBehaviour {
 					colliderObj = hit.transform;
 					if(colliderObj.tag != "Agent")
 					nav.destination = hit.point;
-					anim.SetTrigger(Animator.StringToHash("stopRun"));
+					if (nav.destination == hit.point){
+						anim.ResetTrigger(run);
+					}
+
 					
 					
 				}
@@ -48,7 +50,9 @@ public class MoveToClickPoint : MonoBehaviour {
 					colliderObj = hit.transform;
 					if(colliderObj.tag != "Agent")
 					nav.destination = hit.point;
-					anim.SetTrigger(Animator.StringToHash("stopWalk"));
+					if (nav.destination == hit.point){
+						anim.ResetTrigger(walk);
+					}
 
 				}
 			} 
