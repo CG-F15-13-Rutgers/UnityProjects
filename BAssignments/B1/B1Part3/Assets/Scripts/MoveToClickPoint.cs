@@ -20,8 +20,9 @@ public class MoveToClickPoint : MonoBehaviour {
 		float v = Input.GetAxis("Vertical");
 		int run = Animator.StringToHash("startRun");
 		int walk = Animator.StringToHash ("startWalk");
+		int jump = Animator.StringToHash ("Jump");
 		if (Input.GetMouseButton (0)) {
-			if(Time.time - lastClickTime < delay)
+			if((Time.time - lastClickTime) < delay)
 			{
 				RaycastHit hit;
 				
@@ -33,7 +34,18 @@ public class MoveToClickPoint : MonoBehaviour {
 					colliderObj = hit.transform;
 					if(colliderObj.tag != "Agent")
 					nav.destination = hit.point;
-					if (nav.destination == hit.point){
+
+					if(nav.isOnOffMeshLink)
+					{
+						OffMeshLinkData data = nav.currentOffMeshLinkData;
+						Vector3 startPos = nav.transform.position;
+						Vector3 endPos = data.endPos + Vector3.up*nav.baseOffset;
+						anim.SetTrigger (jump);
+						nav.CompleteOffMeshLink();
+						nav.Resume();
+					}
+						
+						if (nav.destination == hit.point){
 						anim.ResetTrigger(run);
 					}
 
