@@ -7,7 +7,7 @@ public class MoveToClickPoint : MonoBehaviour {
 	Animator anim;
 	private Transform colliderObj;
 	private float lastClickTime;
-	public float delay = 0.25f;
+	public float delay = 0.50f;
 
 	// Use this for initialization
 	void Start () {
